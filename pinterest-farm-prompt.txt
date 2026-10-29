@@ -121,6 +121,29 @@ keyword-rich, warm and plain-spoken, ending with what to tap. The BOARD
 pick, from my real boards (list below). 3 to 5 keyword tags. And the
 DESTINATION LINK for the Pin. No price, discount, or sale claim unless a
 live price was actually verified.
+CONNECT MUSE TO PINTEREST (a Home page card titled "Connect Muse to
+Pinterest — Do This First", placed above the Setup Agent card): teach the
+reader that Pinterest has NO connector button inside Muse; the
+connection is Muse's built-in browser. Steps: (1) paste the starter
+prompt (below) into a Muse chat; (2) Muse opens Pinterest in a live
+browser panel inside the chat; (3) the READER signs in themselves in that
+browser panel — password and any code go only into Pinterest's own login
+page, NEVER into chat; (4) the reader hands control back and says "I'm
+in"; (5) the reader stays the boss — they can watch every click, and
+Muse asks before anything is published; scheduling is not posting.
+Starter prompt, shown in a copy-ready box, EXACT: "Act as my Pinterest
+marketing strategist. Open Pinterest in your browser — I will sign in
+myself when you show me the login page. Once I say I'm in, audit my
+profile, my boards, my settings and my analytics, and tell me what needs
+fixing BEFORE you change anything. My goal is outbound clicks and sales."
+Then a short list of what Muse can do once connected: audit profile,
+boards and analytics; clean up settings and boards with the reader's OK;
+claim a website; schedule Pins in Pinterest's own scheduler up to 30
+days ahead (times land on the hour and half hour); check every Pin has a
+keyword title, a board, and a working destination link; re-check clicks
+weekly. Close with the safety note: the dashboard stores nothing about
+the reader's Pinterest account, and signing out in that browser ends the
+connection.
 AGENT 6 - PINTEREST SETUP AGENT (the coach - not a run agent, no solo form,
 and not part of a farm run): a beginner setup coach, "Start From Zero." An
 interactive 7-step checklist on the Home page; each step expands with
