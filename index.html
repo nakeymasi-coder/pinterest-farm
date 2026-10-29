@@ -218,7 +218,7 @@ hr.sep{border:none;border-top:2px solid var(--silver);margin:18px 0}
 <h2>The Agents - in this order</h2>
 <div class="grid">
 <div class="agent-card"><h3>Agent 1 - Pinterest Scout</h3><p>Scouts Pinterest itself in guest view (no sign-in) for what is winning in the chosen pillar: the search terms and keywords people are using, the top boards in the pillar, and the seasonal trends, worked 45 days ahead of the season. When the run needs a character look, it also picks the outfit or product reference on Pinterest, especially products with an Amazon link, and copies its picture. Does not check price or availability at this step.</p></div>
-<div class="agent-card"><h3>Agent 2 - Image Agent</h3><p>Creates the person and avatar images in chat - character references, the outfit photo (your locked character wearing the exact Pinterest outfit), and the outfit reference sheet. All ultra realistic, real skin and hair texture, all PNG, all 9:16.</p></div>
+<div class="agent-card"><h3>Agent 2 - Image Agent</h3><p>Creates the person and avatar images in chat - character references, the outfit photo (your locked character wearing the exact Pinterest outfit), and the outfit reference sheet. All ultra realistic, real skin and hair texture, all PNG, all 9:16. It also runs the <b>Scene Set workflow</b>: one person reference plus one product reference becomes a 4-shot creator set - Hero, Lifestyle, Detail, Storytelling - four standalone Pins from one product.</p></div>
 <div class="agent-card"><h3>Agent 3 - Story Agent</h3><p>Writes the hook, the shots, and the script for video pins and multi-frame pins. Labels every scene with the run's one Product Presentation choice. Writes scene ACTION only for video prompts - never a description of the character.</p></div>
 <div class="agent-card"><h3>Agent 4 - Video Agent</h3><p>Makes the video pin in chat with your AI video tool, using the Consistent Character workflow on this page. Returns the finished video in chat for your approval. Never posts it.</p></div>
 <div class="agent-card"><h3>Agent 5 - Pin Copy Agent</h3><p>Writes the Pin copy package: the keyword-rich Pin TITLE, the full Pin DESCRIPTION, the BOARD pick from your real boards, 3 to 5 keyword tags, and the DESTINATION LINK. No price, discount, or sale claim unless a live price was actually verified. A Pin is not done until it has a keyword title, a board, and a destination link.</p></div>
@@ -240,6 +240,15 @@ hr.sep{border:none;border-top:2px solid var(--silver);margin:18px 0}
 <pre style="white-space:pre-wrap;background:#eef4fd;border:2px solid var(--sapphire-light);border-radius:12px;padding:12px 14px;font-size:.92rem;line-height:1.5">Act as my Pinterest marketing strategist. Open Pinterest in your browser — I will sign in myself when you show me the login page. Once I say I'm in, audit my profile, my boards, my settings and my analytics, and tell me what needs fixing BEFORE you change anything. My goal is outbound clicks and sales.</pre>
 <p><b>Once you are connected, Muse can:</b> audit your profile, boards and analytics • clean up settings and boards with your OK • build your boards and claim your website • <b>schedule Pins in Pinterest's own scheduler — up to 30 days ahead</b> (times land on the hour and half hour) • check that every Pin carries a keyword title, a board, and a working destination link • re-check your clicks weekly so you can see the number move.</p>
 <p class="small">Safety, plain and simple: your password only ever goes into Pinterest's own login page inside the browser — never into chat, never into this dashboard. This dashboard stores nothing about your Pinterest account. You can sign out of Pinterest in that browser at any time and the connection ends.</p>
+</div>
+
+<div class="card" id="sceneSetCard">
+<h2>Scene Sets — One Product, Four Pins</h2>
+<p><b>The Image Agent's 4-shot workflow.</b> Give a run a person reference and a product reference, flip Scene Set on in the Intake form (or in the Image Agent's solo form), and the run produces <b>four standalone images</b> - each on its own canvas, never a grid or collage - planned as one set: <b>1) Hero</b> - she presents the product, packaging to camera. <b>2) Lifestyle</b> - a natural moment holding or using it. <b>3) Detail</b> - a close product view with her still visible and recognizable. <b>4) Storytelling</b> - an alternate action or angle with clean caption-safe space. Four shots = four Pins, or the stills for a video Pin.</p>
+<p><b>Reference locks come first.</b> The person's face, complexion, hair, body proportions and wardrobe, and the product's shape, colors, packaging and label placement, are locked from the actual references before anything is generated - never invented, never slimmed, never swapped. Optional extra references can be added, each with one job only: a skin close-up for texture, a body reference for silhouette, a pose reference, a wardrobe reference.</p>
+<p><b>Scenes:</b> home / living room, kitchen, bathroom vanity, bedroom, home office, studio, cafe, retail aisle, gym, park or garden, city street, travel, unboxing tabletop, product demonstration, testimonial, beauty editorial - or your own custom spot. Pick up to four: one scene = four compositions in it; two scenes = two shots each; none picked = the agent chooses one believable setting and varies the compositions.</p>
+<p><b>Realism rules:</b> believable photographic skin - pores, fine hairs, natural texture, no airbrushed or waxy finish; concrete light direction and camera language; natural hands, grip, contact shadows and product scale; no added logos, captions, watermarks, or invented label copy or claims. Every finished shot is checked before delivery - identity match, product fidelity, hands and limbs, distinct composition - and delivered as an image-and-prompt pair, Shot 01 through Shot 04, each prompt standing alone.</p>
+<p class="small">Scene Sets shine in <b>Product Spotlight</b> mode and anywhere a character presents a real product. The full step-by-step workflow lives in the farm's master prompt, inside the Image Agent's instructions.</p>
 </div>
 
 <div class="card" id="setupCard">
@@ -368,6 +377,11 @@ hr.sep{border:none;border-top:2px solid var(--silver);margin:18px 0}
 </div>
 </fieldset>
 
+<label class="field">Scene Set (optional)
+<span class="hint">Turn a person + product run into a 4-shot creator set: Hero, Lifestyle, Detail, Storytelling - four standalone images, one product.</span>
+<select id="in_sceneSet"><option value="">Single image (standard)</option><option value="4-Shot Scene Set">4-Shot Scene Set</option></select>
+</label>
+
 <label class="field">4. Topic
 <input type="text" id="in_topic" placeholder="What is this pin about?" required>
 </label>
@@ -495,7 +509,7 @@ var BOARDS=["Good Morning Affirmations","Prompt Generators","AI Prompts & Creati
 var STANDING_ORDER="A Pin is not done until it has a keyword title, a board, and a destination link.";
 var AGENTS=[
 {id:1,name:"Pinterest Scout",extraLabel:"Search focus / keyword",extraHint:"For example: a keyword people search, a board to study, or a season to plan 45 days ahead",task:"Scout Pinterest itself in guest view (no sign-in) for what is winning in the chosen pillar: the search terms and keywords people are using, the top boards in the pillar, and the seasonal trends, worked 45 days ahead of the season. When this run needs a character look, also pick the outfit or product reference on Pinterest, especially products with an Amazon link, and copy its picture. Do NOT check price or availability at this step."},
-{id:2,name:"Image Agent",extraLabel:"Image note",extraHint:"A note about the pin image needed, or the outfit reference being used",task:"Create the person and avatar images in chat: the character references, the outfit photo (the locked character wearing the exact Pinterest outfit), and the outfit reference sheet. All ultra realistic, real skin and hair texture, all PNG, all 9:16. Lock the outfit in chat first and check face match and outfit match."},
+{id:2,name:"Image Agent",extraLabel:"Image note",extraHint:"A note about the pin image needed, or the outfit reference being used",task:"Create the person and avatar images in chat: the character references, the outfit photo (the locked character wearing the exact Pinterest outfit), and the outfit reference sheet. All ultra realistic, real skin and hair texture, all PNG, all 9:16. Lock the outfit in chat first and check face match and outfit match. When the run's Scene Set is on, follow the Scene Set Workflow in this prompt: lock the person and product references first, plan the 4 shots (Hero, Lifestyle, Detail, Storytelling), generate each on its own canvas, QC every shot, and deliver image-and-prompt pairs 01-04."},
 {id:3,name:"Story Agent",extraLabel:"Hook idea (optional)",extraHint:"A hook you already like, or leave blank",task:"Write the hook, the shots, and the script for this pin. Label every scene with the run's one Product Presentation choice. Write scene ACTION only in the video prompts - never a description of the character."},
 {id:4,name:"Video Agent",extraLabel:"Script or scene notes",extraHint:"Paste the approved script, or note where it is",task:"Make the video pin in chat with the AI video tool, using the Consistent Character workflow in this prompt. Return the finished video in chat for approval. Never post it."},
 {id:5,name:"Pin Copy Agent",extraLabel:"Board pick (optional)",extraHint:"One of your boards, or leave blank and the Pin Copy Agent picks the best fit from your board list",task:"Write the Pin copy package: the keyword-rich Pin TITLE, the full Pin DESCRIPTION (keyword-rich, warm and plain-spoken, ending with what to tap), the BOARD pick from my real boards ("+BOARDS.join("; ")+"), 3 to 5 keyword tags, and the DESTINATION LINK for the Pin. No price, discount, or sale claim unless a live price was actually verified. "+STANDING_ORDER}
@@ -690,6 +704,7 @@ lines.push("Voice: "+((c&&c.voice)||run.voice||"-"));
 lines.push("Mode: "+(run.mode||"-"));
 lines.push("Product Presentation: "+presLabel(run.presentation));
 lines.push("Exact prompt sentence: \""+presSentence(run.presentation)+"\"");
+lines.push("Scene Set: "+(run.sceneSet?run.sceneSet+" - run the Scene Set Workflow (farm prompt, Image Agent section): 4 standalone shots - Hero, Lifestyle, Detail, Storytelling":"Single image (standard)"));
 lines.push("Topic: "+(run.topic||"-"));
 lines.push("Pin format / video length: "+(run.length||"-"));
 lines.push("Product: "+(run.productName||"-"));
@@ -709,7 +724,7 @@ runHeader(run,c),
 "",
 "Run the 5 agents in this order:",
 "Agent 1 - Pinterest Scout: scout Pinterest itself in guest view (no sign-in) for what is winning in this pillar - search terms and keywords, top boards, and seasonal trends worked 45 days ahead of the season. When this run needs a character look, also pick the outfit or product reference on Pinterest, especially products with an Amazon link, and copy its picture. Do not check price or availability at this step.",
-"Agent 2 - Image Agent: create the person and avatar images in chat - character references, the outfit photo (my locked character wearing the exact outfit), and the outfit reference sheet. All ultra realistic, real skin and hair texture, all PNG, all 9:16.",
+"Agent 2 - Image Agent: create the person and avatar images in chat - character references, the outfit photo (my locked character wearing the exact outfit), and the outfit reference sheet. All ultra realistic, real skin and hair texture, all PNG, all 9:16. When this run's Scene Set is on, also run the Scene Set Workflow (in this prompt): one person reference + one product reference, locks first, 4 standalone shots - Hero, Lifestyle, Detail, Storytelling - QC each, deliver image-and-prompt pairs.",
 "Agent 3 - Story Agent: write the hook, the shots, and the script. Label every scene with this run's one Product Presentation choice. Write scene ACTION only for video prompts - never a description of the character.",
 "Agent 4 - Video Agent: make the video pin in chat with my AI video tool, using the Consistent Character workflow below. Return the finished video in chat for my approval. Never post it.",
 "Agent 5 - Pin Copy Agent: write the Pin copy package - the keyword-rich Pin TITLE, the full Pin DESCRIPTION (keyword-rich, warm and plain-spoken, ending with what to tap), the BOARD pick from my real boards ("+BOARDS.join("; ")+"), 3 to 5 keyword tags, and the DESTINATION LINK for the Pin. No price, discount, or sale claim unless a live price was actually verified. "+STANDING_ORDER,
@@ -758,7 +773,7 @@ var pres=document.querySelector('input[name="in_pres"]:checked');
 if(!mode){setMsg("intakeMsg","Pick a mode first (field 2).",false);return;}
 if(charVal==="__new__"){setMsg("intakeMsg","You picked create a new character. Add her in the Character Vault first, then pick her here.",false); showPage("vault"); return;}
 var c=(charVal&&charVal!=="__none__")?findChar(charVal):null;
-var run={id:uid(),kind:"full",agent:null,characterId:c?c.id:"",characterLabel:c?charLabel(c):"No character picked",voice:c?(c.voice||""):"",mode:mode,presentation:pres.value,topic:document.getElementById("in_topic").value.trim(),length:document.getElementById("in_length").value.trim(),productName:document.getElementById("in_productName").value.trim(),productLink:document.getElementById("in_productLink").value.trim(),refVideo:document.getElementById("in_refVideo").value.trim(),notes:document.getElementById("in_notes").value.trim(),destLink:document.getElementById("in_destLink").value.trim(),extraLabel:"",extraValue:"",status:"queued",createdAt:Date.now()};
+var run={id:uid(),kind:"full",agent:null,characterId:c?c.id:"",characterLabel:c?charLabel(c):"No character picked",voice:c?(c.voice||""):"",mode:mode,presentation:pres.value,sceneSet:document.getElementById("in_sceneSet").value,topic:document.getElementById("in_topic").value.trim(),length:document.getElementById("in_length").value.trim(),productName:document.getElementById("in_productName").value.trim(),productLink:document.getElementById("in_productLink").value.trim(),refVideo:document.getElementById("in_refVideo").value.trim(),notes:document.getElementById("in_notes").value.trim(),destLink:document.getElementById("in_destLink").value.trim(),extraLabel:"",extraValue:"",status:"queued",createdAt:Date.now()};
 state.runs.unshift(run); save(); renderQueue();
 setMsg("intakeMsg","Saved to the Queue. Open the Queue and tap Run in Chat on this run when you are ready.",true);
 this.reset(); populateModes(); refreshCharacterSelects();
@@ -777,6 +792,7 @@ h+='<fieldset><legend>Product Presentation - one single choice</legend><div clas
 h+='<label class="pres-opt"><input type="radio" name="solo_pres_'+a.id+'" value="Wearing" checked><span>Wearing the product<small>Every prompt ends: "Wearing the product, not holding it."</small></span></label>';
 h+='<label class="pres-opt"><input type="radio" name="solo_pres_'+a.id+'" value="Holding"><span>Holding the product<small>Every prompt ends: "Holding the product, not wearing it."</small></span></label>';
 h+='</div></fieldset>';
+if(a.id===2){h+='<label class="field">Scene Set (optional)<span class="hint">A 4-shot creator set from one person reference + one product reference: Hero, Lifestyle, Detail, Storytelling.</span><select class="solo-scene"><option value="">Single image (standard)</option><option value="4-Shot Scene Set">4-Shot Scene Set</option></select></label>';}
 h+='<label class="field">Topic<input type="text" class="solo-topic" placeholder="What is this job about?"></label>';
 h+='<label class="field">Pin format / video length<span class="hint">For example: a still pin, an idea pin, or a 30 second video pin</span><input type="text" class="solo-length" placeholder="Still pin, or 30 seconds"></label>';
 h+='<label class="field">Product name and product link, when there is one<input type="text" class="solo-productName" placeholder="Product name"><input type="url" class="solo-productLink" placeholder="Product link (https://...)"></label>';
@@ -813,7 +829,7 @@ if(!mode){fail("Pick a mode first.");return;}
 var charVal=form.querySelector(".solo-character").value;
 if(charVal==="__new__"){fail("You picked create a new character. Add her in the Character Vault first, then pick her here."); showPage("vault"); return;}
 var c=(charVal&&charVal!=="__none__")?findChar(charVal):null;
-var run={id:uid(),kind:"solo",agent:aid,characterId:c?c.id:"",characterLabel:c?charLabel(c):"No character picked",voice:c?(c.voice||""):"",mode:mode,presentation:pres,topic:form.querySelector(".solo-topic").value.trim(),length:form.querySelector(".solo-length").value.trim(),productName:form.querySelector(".solo-productName").value.trim(),productLink:form.querySelector(".solo-productLink").value.trim(),refVideo:form.querySelector(".solo-refVideo").value.trim(),notes:form.querySelector(".solo-notes").value.trim(),destLink:form.querySelector(".solo-dest").value.trim(),extraLabel:agent?agent.extraLabel:"",extraValue:form.querySelector(".solo-extra").value.trim(),status:"queued",createdAt:Date.now()};
+var run={id:uid(),kind:"solo",agent:aid,characterId:c?c.id:"",characterLabel:c?charLabel(c):"No character picked",voice:c?(c.voice||""):"",mode:mode,presentation:pres,sceneSet:(form.querySelector(".solo-scene")?form.querySelector(".solo-scene").value:""),topic:form.querySelector(".solo-topic").value.trim(),length:form.querySelector(".solo-length").value.trim(),productName:form.querySelector(".solo-productName").value.trim(),productLink:form.querySelector(".solo-productLink").value.trim(),refVideo:form.querySelector(".solo-refVideo").value.trim(),notes:form.querySelector(".solo-notes").value.trim(),destLink:form.querySelector(".solo-dest").value.trim(),extraLabel:agent?agent.extraLabel:"",extraValue:form.querySelector(".solo-extra").value.trim(),status:"queued",createdAt:Date.now()};
 state.runs.unshift(run); save(); renderQueue();
 msg.textContent="Saved to the Queue as a solo job for Agent "+aid+" - "+(agent?agent.name:"")+"."; msg.className="msg ok solo-msg"; msg.style.display="block";
 var out=form.querySelector(".solo-out"); out.style.display="block";
@@ -842,6 +858,7 @@ html+='<p class="kv"><b>Character:</b> '+esc(run.characterLabel||"No character p
 html+='<p class="kv"><b>Mode:</b> '+esc(run.mode||"-")+'</p>';
 html+='<p class="kv"><b>Product Presentation:</b> <span class="pill pres">'+esc(presLabel(run.presentation))+'</span></p>';
 html+='<p class="kv"><b>Exact prompt sentence:</b> "'+esc(presSentence(run.presentation))+'"</p>';
+html+='<p class="kv"><b>Scene Set:</b> '+(run.sceneSet?esc(run.sceneSet):"Single image (standard)")+'</p>';
 html+='<p class="kv"><b>Topic:</b> '+esc(run.topic||"-")+'</p>';
 html+='<p class="kv"><b>Pin format / video length:</b> '+esc(run.length||"-")+'</p>';
 html+='<p class="kv"><b>Product:</b> '+esc(run.productName||"-")+(run.productLink?' - <a href="'+esc(run.productLink)+'" target="_blank" rel="noopener">Product link</a>':"")+'</p>';
@@ -892,6 +909,7 @@ html+='<p class="kv"><b>Voice:</b> '+esc((c&&c.voice)||run.voice||"-")+'</p>';
 html+='<p class="kv"><b>Mode:</b> '+esc(run.mode||"-")+'</p>';
 html+='<p class="kv"><b>Product Presentation:</b> <span class="pill pres">'+esc(presLabel(run.presentation))+'</span></p>';
 html+='<p class="kv"><b>Exact prompt sentence:</b> "'+esc(presSentence(run.presentation))+'"</p>';
+html+='<p class="kv"><b>Scene Set:</b> '+(run.sceneSet?esc(run.sceneSet):"Single image (standard)")+'</p>';
 html+='<p class="kv"><b>Topic:</b> '+esc(run.topic||"-")+'</p>';
 html+='<p class="kv"><b>Pin format / video length:</b> '+esc(run.length||"-")+'</p>';
 html+='<p class="kv"><b>Product:</b> '+esc(run.productName||"-")+'</p>';
