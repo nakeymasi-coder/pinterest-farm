@@ -27,16 +27,29 @@ browse Pinterest, generate images, make videos, or post pins by itself - the
 work happens in chat from the Run in Chat prompts.
 
 DESIGN
-Clean, pretty, phone-first. Light sapphire blue, chrome silver, and pearl
-white, soft ombre gradients, with small butterfly touches. Big readable text,
-big tap-friendly buttons. Everything that relates to video or character
-references is 9:16 vertical. START EMPTY: no test characters, no test runs,
-no sample rows anywhere. I add my real characters and runs myself.
-The dashboard saves in the browser with localStorage key pinterestFarmV1.
+Clean, pretty, phone-first. The dashboard lives in a Pinterest world: deep
+Pinterest red and burgundy, pearl white glass panels, chrome silver accents,
+a slow animated red ambient background with faint floating pin shapes, and
+small butterfly touches. A full-screen PORTAL ENTRANCE opens first: the
+portal-intro.mp4 red spiral tunnel video (kept in the same folder) plays
+full-bleed behind the title PINTEREST FARM in huge glowing white letters,
+the tagline "Where Pins Turn Into Sales", and one pearl-white Enter the
+Farm button; tapping it zooms and fades through the portal into the
+dashboard. The gate shows on every fresh load (it is never suppressed by
+localStorage) and the page stays fully usable if the video file is missing.
+Cards carry real 3D depth - layered shadows, glassy panels, and a gentle
+pointer tilt on desktop. Big readable text, big tap-friendly buttons.
+Everything that relates to video or character references is 9:16 vertical.
+START EMPTY: no test characters, no test runs, no sample rows anywhere.
+I add my real characters and runs myself. The dashboard saves in the
+browser with localStorage key pinterestFarmV1.
 
 PAGES THE DASHBOARD MUST HAVE
-HOME: explains the farm, the 5 agents, the 7 modes, the Product Presentation
-rule, the Pin standing order, and how Run in Chat works.
+HOME: explains the farm, the agents (the 5 run agents plus the Pinterest
+Setup Agent), the 7 modes, the Product Presentation rule, the Pin standing
+order, and how Run in Chat works. The Pinterest Setup Agent's interactive
+7-step Start From Zero checklist lives on Home; its checkmarks save inside
+the same pinterestFarmV1 store under the setupProgress key.
 PIN INTAKE FORM: the full farm run form (fields below, in order).
 CHARACTER VAULT: locked characters (Character A, B, C...), each reusable as
 that same character.
@@ -108,6 +121,23 @@ keyword-rich, warm and plain-spoken, ending with what to tap. The BOARD
 pick, from my real boards (list below). 3 to 5 keyword tags. And the
 DESTINATION LINK for the Pin. No price, discount, or sale claim unless a
 live price was actually verified.
+AGENT 6 - PINTEREST SETUP AGENT (the coach - not a run agent, no solo form,
+and not part of a farm run): a beginner setup coach, "Start From Zero." An
+interactive 7-step checklist on the Home page; each step expands with
+plain-language guidance written for a total beginner: (1) create the
+account and switch it to a free Business account; (2) build a profile that
+sells - clear photo or logo, keyword-rich bio saying who you help and what
+you post, and a shop or community link; (3) claim your website so your
+content is credited to you; (4) create your first 5 boards with
+keyword-rich names a buyer would search; (5) turn on Rich Pins and find
+your Analytics - outbound clicks are the scoreboard; (6) post your first
+Pin the right way - strong vertical visual, keyword title, description,
+board, and a destination link; (7) set your weekly rhythm - batch and
+schedule ahead instead of posting randomly. Each step has a checkbox; the
+x-of-7 progress and progress bar persist inside the same pinterestFarmV1
+store under setupProgress, without changing the characters/runs shape. At
+7 of 7 it shows the completion state: "You're set up - now go feed the
+farm."
 STANDING ORDER, baked into every run prompt and the solo Pin Copy form:
 "A Pin is not done until it has a keyword title, a board, and a destination
 link."
@@ -239,7 +269,12 @@ top boards, 45-day seasonal lead, outfit pick), outfit lock in chat, outfit
 sheet in chat as PNG, Consistent Character references (headshot + outfit
 sheet, never empty), no character description in scene prompts, wearing OR
 holding never both. The dashboard states plainly that it does not execute
-the work by itself and that nothing is auto-posted. No em dashes anywhere.
+the work by itself and that nothing is auto-posted. The portal entrance
+(portal-intro.mp4, same folder) shows on every fresh load, dismisses
+through to the dashboard, and the page works without the video file. The
+Pinterest Setup Agent checklist persists under setupProgress inside
+pinterestFarmV1, alongside the untouched characters/runs shape. No em
+dashes anywhere.
 
 Build it exactly like this. If a rule above conflicts with a default you
 would normally use, this prompt wins.
